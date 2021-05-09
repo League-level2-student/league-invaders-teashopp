@@ -10,11 +10,11 @@ public class GameObject {
 	boolean isActive;
 	
 	// game object stuff
-	GameObject(){
-		x = 0;
-		y = 0;
-		width = 100;
-		height = 100;
+	GameObject(int x,int y,int width,int height){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 		speed = 0;
 		isActive = true;
 	}
