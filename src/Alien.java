@@ -23,6 +23,7 @@ public class Alien extends GameObject {
 	// move the alien down
 	public void update() {
 		y += speed;
+        super.update();
 	}
 
 	// create the alien

@@ -23,6 +23,7 @@ public class Projectile extends GameObject {
 	// move the projectile down
 	public void update() {
 		y -= speed;
+        super.update();
 	}
 
 	// create the projectile
