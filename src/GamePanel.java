@@ -98,6 +98,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		}
 		om.draw(g);
+		g.setFont(titleFont0);
+		g.setColor(Color.WHITE);
+		g.drawString("Score: " + om.getscore(), 10, 40);
 	}
 
 	// establish window at end
@@ -105,6 +108,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// red at end
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.setFont(titleFont1);
+		g.setColor(Color.BLACK);
+		g.drawString("You finished the game with: " + om.getscore() + " points!", 10, 400);
 	}
 
 	// action when timer is triggered
@@ -124,6 +130,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	// stuff that happens when key is pressed
 	@Override
 	public void keyPressed(KeyEvent e) {
+
+		// check which key is pressed when in end state
+		if (currentState == END) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				rs = new Rocketship(250, 700, 50, 50);
+				om = new ObjectManager(rs);
+			}
+		}
+
 		// change to next game state when key is pressed
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == MENU) {
@@ -136,6 +151,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState++;
 			}
 		}
+
+		// check which key is pressed when in menu state
+		if (currentState == MENU) {
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				System.out.println(
+						"Use your arrow keys to move and your space bar to shoot the aliens! Each alien you hit adds a point! Don't let your rocket touch the aliens!");
+			}
+		}
+
 		// check which key is pressed when in game state
 		if (currentState == GAME) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -169,6 +193,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				om.addProjectile(rs.getProjectile());
 			}
 		}
+
 	}
 
 	// load space
